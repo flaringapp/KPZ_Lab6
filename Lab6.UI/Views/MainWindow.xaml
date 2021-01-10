@@ -1,0 +1,168 @@
+﻿<Window x:Class="Lab6.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
+        xmlns:Converter="clr-namespace:Lab6.Converters"
+        mc:Ignorable="d"
+        Title="Users" 
+        Height="450" Width="800"
+        MinWidth="500" MinHeight="250"
+        Name="Root">
+
+    <Window.Resources>
+        <Converter:UserTypeImageConverter x:Key="my:UserTypeImageConverter" />
+        <Converter:UserTypeNameConverter x:Key="my:UserTypeNameConverter" />
+    </Window.Resources>
+    
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Closing">
+            <i:InvokeCommandAction Command="{Binding OnClosing}" />
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="auto" />
+        </Grid.ColumnDefinitions>
+
+        <DataGrid 
+            Grid.Column="0"
+            AutoGenerateColumns="False"
+            IsReadOnly="True"
+            ItemsSource="{Binding Users}"
+            SelectedItem="{Binding SelectedUser}">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn
+                    Header="Name" Binding="{Binding Name}" />
+
+                <DataGridTextColumn
+                    Header="Surname" Binding="{Binding Surname}" />
+
+                <DataGridTextColumn
+                    Header="Email" Binding="{Binding Email}" />
+
+                <DataGridTextColumn
+                    Header="Type" Binding="{Binding Type, Converter={StaticResource my:UserTypeNameConverter}}" />
+
+                <DataGridTemplateColumn
+                    Header="Type icon">
+
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+
+                            <Image
+                                Height="24" Width="24"
+                                Source="{Binding Type, Converter={StaticResource my:UserTypeImageConverter}}" />
+
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+            
+        </DataGrid>
+
+        <Grid 
+            Grid.Column="1"
+            VerticalAlignment="Stretch"
+            Margin="10"
+            MaxWidth="150">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock 
+                Grid.Row="0"
+                HorizontalAlignment="Center" 
+                FontSize="18" FontWeight="Bold">
+                User actions
+            </TextBlock>
+
+            <ScrollViewer 
+                Grid.Row="1"
+                HorizontalAlignment="Stretch"
+                VerticalScrollBarVisibility="Auto">
+
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Vertical">
+
+                    <Button
+                        HorizontalAlignment="Stretch"
+                        Command="{ Binding OnAddClicked }">
+
+                        <TextBlock 
+                            Text="Add new user" 
+                            TextWrapping="Wrap" 
+                            TextAlignment="Center" />
+                    </Button>
+
+                    <Button
+                        HorizontalAlignment="Stretch"
+                        Margin="0 5 0 5"
+                        Command="{ Binding OnEditClicked }">
+                        
+                        <TextBlock
+                            Text="Edit selected user" 
+                            TextWrapping="Wrap" 
+                            TextAlignment="Center"/>
+                        
+                    </Button>
+                    
+                    <Button
+                        HorizontalAlignment="Stretch"
+                        Command="{ Binding OnDeleteClicked }">
+                        
+                        <TextBlock 
+                            Text="Delete selected user"
+                            TextWrapping="Wrap"
+                            TextAlignment="Center"/>
+                    </Button>
+
+                </StackPanel>
+
+            </ScrollViewer>
+
+            <StackPanel 
+                Grid.Row="2"
+                HorizontalAlignment="Right">
+
+                <Rectangle 
+                    Name="AnimatedRect"
+                    Fill="#FFF4F4F5" 
+                    HorizontalAlignment="Left" 
+                    Height="10" 
+                    Stroke="Black" 
+                    Width="10">
+                    
+                    <Rectangle.Triggers>
+                        <EventTrigger RoutedEvent="Rectangle.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation
+                                        Storyboard.TargetName="AnimatedRect" 
+                                        Storyboard.TargetProperty="Opacity"
+                                        From="1.0" To="0.0" Duration="0:0:1" 
+                                        AutoReverse="True" RepeatBehavior="Forever" />
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Rectangle.Triggers>
+                </Rectangle>
+
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+
+</Window>
