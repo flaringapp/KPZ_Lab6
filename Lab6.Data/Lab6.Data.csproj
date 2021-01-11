@@ -91,9 +91,13 @@
     <Compile Include="DB\UsersSourceModelEF\UserSourceModelEF.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\IUsersRepository.cs" />
-    <Compile Include="Repository\UsersRepository.cs" />
-    <Compile Include="UserModel.cs" />
+    <Compile Include="Repository\Rooms\IRoomsRepository.cs" />
+    <Compile Include="Repository\Rooms\RoomModel.cs" />
+    <Compile Include="Repository\Rooms\RoomRepository.cs" />
+    <Compile Include="Repository\UnitOfWork\UnitOfWork.cs" />
+    <Compile Include="Repository\Users\IUsersRepository.cs" />
+    <Compile Include="Repository\Users\UsersRepository.cs" />
+    <Compile Include="Repository\Users\UserModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -6,7 +6,13 @@ namespace Lab6.Data.DB
 {
     class UserSourceModelEFCF : IUserSourceModel
     {
-        private readonly UsersCFDAO dao = new UsersCFDAO();
+
+        private readonly UsersCFDAO dao;
+
+        public UserSourceModelEFCF(UsersCFDAO dao)
+        {
+            this.dao = dao;
+        }
 
         public List<UserDataModel> GetUsers()
         {
@@ -60,7 +66,7 @@ namespace Lab6.Data.DB
             entity.Name = user.Name;
             entity.Surname = user.Surname;
             entity.Email = user.Email;
-            entity.Type = user.Type;
+            entity.ype = user.Type;
         }
     }
 }

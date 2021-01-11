@@ -1,32 +1,23 @@
 ﻿using Lab6.Data.DB;
+using Lab6.Data.DB.UsersSourceModelEFCF.DAO;
 using System;
 using System.Collections.Generic;
 using static Lab6.Data.UserModel;
 
-namespace Lab6.Data.Repository
+namespace Lab6.Data.Repository.Users
 {
     public class UsersRepository : IUsersRepository
     {
 
-        private static IUsersRepository _instance = null;
-
-        public static IUsersRepository Instance
-        {
-            get
-            {
-                if (_instance == null) _instance = new UsersRepository();
-                return _instance;
-            }
-        }
-
-        private readonly IUserSourceModel sourceModel = new UserSourceModelEFCF();
+        private readonly IUserSourceModel sourceModel;
 
         public event Action<List<UserModel>> OnUsersUpdated;
 
         private List<UserModel> _users;
 
-        public UsersRepository()
+        internal UsersRepository(UsersCFDAO dao)
         {
+            sourceModel = new UserSourceModelEFCF(dao);
             GetUsers();
         }
 

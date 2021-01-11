@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Lab6.Data.Repository
+namespace Lab6.Data.Repository.Users
 {
     public interface IUsersRepository
     {
