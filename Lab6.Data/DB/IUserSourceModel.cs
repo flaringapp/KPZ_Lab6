@@ -9,7 +9,7 @@ namespace Lab6.Data.DB
 
         int AddUser(UserDataModel user);
 
-        void DeleteUser(int id);
+        void DeleteUser(int userId);
 
         void EditUser(UserDataModel user);
 

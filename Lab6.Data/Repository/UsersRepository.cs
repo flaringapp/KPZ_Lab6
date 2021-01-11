@@ -19,7 +19,7 @@ namespace Lab6.Data.Repository
             }
         }
 
-        private readonly IUserSourceModel sourceModel = new UserSourceModel();
+        private readonly IUserSourceModel sourceModel = new UserSourceModelEF();
 
         public event Action<List<UserModel>> OnUsersUpdated;
 
