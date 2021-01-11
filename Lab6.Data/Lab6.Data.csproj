@@ -59,6 +59,11 @@
     <Compile Include="DB\IUserSourceModel.cs" />
     <Compile Include="DB\UserDataModel.cs" />
     <Compile Include="DB\UserSourceModel.cs" />
+    <Compile Include="DB\UsersSourceModelEFCF\DAO\Room.cs" />
+    <Compile Include="DB\UsersSourceModelEFCF\DAO\User.cs" />
+    <Compile Include="DB\UsersSourceModelEFCF\DAO\UsersCFDAO.cs" />
+    <Compile Include="DB\UsersSourceModelEFCF\DAO\RoomBooking.cs" />
+    <Compile Include="DB\UsersSourceModelEFCF\UserSourceModelEFCF.cs" />
     <Compile Include="DB\UsersSourceModelEF\DAO\room.cs">
       <DependentUpon>UsersDAO.tt</DependentUpon>
     </Compile>
@@ -116,6 +121,7 @@
       <LastGenOutput>UsersDAO.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
